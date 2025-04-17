@@ -1,0 +1,285 @@
+.symptom-checker {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.checker-container {
+    flex: 1;
+    padding: 40px 20px;
+}
+
+.checker-header {
+    margin-bottom: 30px;
+}
+
+.checker-header h2 {
+    font-size: 1.8rem;
+    color: var(--dark-color);
+    margin-bottom: 10px;
+}
+
+.checker-header p {
+    color: var(--text-light);
+}
+
+.checker-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.checker-chat {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.chat-message {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.chat-message.bot {
+    justify-content: flex-start;
+}
+
+.chat-message.user {
+    justify-content: flex-end;
+}
+
+.message-content {
+    max-width: 80%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.chat-message.bot .message-content {
+    background-color: #f1f0f0;
+    color: var(--text-color);
+    border-bottom-left-radius: 0;
+}
+
+.chat-message.user .message-content {
+    background-color: var(--primary-color);
+    color: white;
+    border-bottom-right-radius: 0;
+}
+
+.chat-options {
+    padding: 20px;
+    border-top: 1px solid #eee;
+}
+
+.symptom-options h4,
+.related-options h4 {
+    margin-bottom: 15px;
+    color: var(--dark-color);
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.option-btn {
+    background-color: #f5f7fa;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+.option-btn:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+    border-color: var(--primary-color);
+}
+
+.results-btn {
+    grid-column: 1 / -1;
+    background-color: rgba(46, 204, 113, 0.1);
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+.results-btn:hover {
+    background-color: rgba(46, 204, 113, 0.2);
+    border-color: var(--secondary-color);
+}
+
+.results-section {
+    padding: 20px;
+    border-top: 1px solid #eee;
+}
+
+.results-section h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: var(--dark-color);
+}
+
+.no-results {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-light);
+    background-color: #f5f7fa;
+    border-radius: 8px;
+}
+
+.conditions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.condition-card {
+    background-color: #f5f7fa;
+    border-radius: 8px;
+    padding: 15px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.condition-card h4 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--dark-color);
+}
+
+.condition-description {
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.condition-recommendation {
+    background-color: rgba(46, 204, 113, 0.05);
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.condition-recommendation h5 {
+    font-size: 0.95rem;
+    margin-bottom: 5px;
+    color: var(--secondary-color);
+}
+
+.results-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.selected-symptoms {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+}
+
+.selected-symptoms h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: var(--dark-color);
+    position: relative;
+}
+
+.selected-symptoms h3::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+.no-symptoms {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-light);
+    background-color: #f5f7fa;
+    border-radius: 8px;
+}
+
+.symptoms-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.symptom-item {
+    background-color: rgba(52, 152, 219, 0.1);
+    color: var(--primary-color);
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.disclaimer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.disclaimer h4 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--dark-color);
+}
+
+.disclaimer p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* Scrollbar styling */
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+    .checker-content {
+        grid-template-columns: 1fr;
+    }
+
+    .options-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}

@@ -1,0 +1,117 @@
+.past-appointments-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.past-container {
+    flex: 1;
+    padding: 40px 20px;
+}
+
+.past-header {
+    margin-bottom: 30px;
+}
+
+.past-header h2 {
+    font-size: 1.8rem;
+    color: var(--dark-color);
+    margin-bottom: 10px;
+}
+
+.past-header p {
+    color: var(--text-light);
+}
+
+.past-content {
+    background-color: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+}
+
+.past-search {
+    margin-bottom: 30px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 50px 0;
+    color: var(--text-light);
+}
+
+.empty-state p {
+    margin-bottom: 15px;
+}
+
+.appointments-table-container {
+    overflow-x: auto;
+}
+
+.appointments-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.appointments-table th,
+.appointments-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.appointments-table th {
+    font-weight: 600;
+    color: var(--dark-color);
+    background-color: #f5f7fa;
+}
+
+.appointments-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.status-badge.pending {
+    background-color: rgba(243, 156, 18, 0.1);
+    color: #f39c12;
+}
+
+.status-badge.confirmed {
+    background-color: rgba(46, 204, 113, 0.1);
+    color: var(--secondary-color);
+}
+
+.status-badge.rescheduled {
+    background-color: rgba(231, 76, 60, 0.1);
+    color: var(--accent-color);
+}
+
+.status-badge.completed {
+    background-color: rgba(52, 152, 219, 0.1);
+    color: var(--primary-color);
+}
+
+.records-count {
+    color: var(--primary-color);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.no-records {
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .appointments-table {
+        min-width: 700px;
+    }
+}
