@@ -1,7 +1,8 @@
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom"
 import Header from "../components/Header"
 import "./LandingPage.css"
-
+import doctorImage from './doc_smiling.png';
 const LandingPage = () => {
     return (
         <div className="landing-page">
@@ -16,14 +17,14 @@ const LandingPage = () => {
                             <Link to="/select-user-type" className="btn btn-primary">
                                 Get Started
                             </Link>
-                            <a href="#services" className="btn btn-outline">
+                            <a href="#services" className="btn btn-primary">
                                 Learn More
                             </a>
                         </div>
                     </div>
                     <div className="hero-image">
                         <div className="image-container">
-                            {/* Placeholder for hero image */}
+                            <img src={doctorImage} alt="doctor" className="hero-img" />
                             <div className="placeholder-image">
                                 <div className="animated-circle"></div>
                                 <div className="animated-plus"></div>
@@ -84,30 +85,30 @@ const LandingPage = () => {
                 </div>
             </section>
 
-            <section className="testimonials">
+            <section className="review">
                 <div className="container">
                     <h2 className="section-title">What Our Patients Say</h2>
-                    <div className="testimonial-cards">
-                        <div className="testimonial-card">
+                    <div className="review-cards">
+                        <div className="review-card">
                             <p>
                                 "MediCare Hub has made managing my family's healthcare so much easier. The online appointment booking is
                                 seamless!"
                             </p>
-                            <div className="testimonial-author">- Sarah M.</div>
+                            <div className="review-author">- Kriti</div>
                         </div>
-                        <div className="testimonial-card">
+                        <div className="review-card">
                             <p>
                                 "I love having all my medical records in one place. The doctors are professional and the platform is
                                 user-friendly."
                             </p>
-                            <div className="testimonial-author">- John D.</div>
+                            <div className="review-author">- Shiva</div>
                         </div>
-                        <div className="testimonial-card">
+                        <div className="review-card">
                             <p>
                                 "The symptom checker helped me understand my condition before my appointment. Highly recommend this
                                 service!"
                             </p>
-                            <div className="testimonial-author">- Lisa T.</div>
+                            <div className="review-author">- Ananya</div>
                         </div>
                     </div>
                 </div>
@@ -118,7 +119,7 @@ const LandingPage = () => {
                     <div className="footer-content">
                         <div className="footer-logo">
                             <h2>MediCare Hub</h2>
-                            <p>Your health, our priority</p>
+                            <p>Your health is our our priority</p>
                         </div>
                         <div className="footer-links">
                             <h3>Quick Links</h3>
@@ -136,9 +137,9 @@ const LandingPage = () => {
                         </div>
                         <div className="footer-contact">
                             <h3>Contact Us</h3>
-                            <p>Email: info@medicarehub.com</p>
-                            <p>Phone: (123) 456-7890</p>
-                            <p>Address: 123 Health Street, Medical City</p>
+                            <p>Email: medicare@gmail.com</p>
+                            <p>Phone: 1234567890</p>
+                            <p>Address: VIT Chennai, Kelambakkam</p>
                         </div>
                     </div>
                     <div className="footer-bottom">

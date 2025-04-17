@@ -2,6 +2,7 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: #2B2F77;
 }
 
 .auth-container {
@@ -25,7 +26,7 @@
     font-size: 1.8rem;
     margin-bottom: 30px;
     text-align: center;
-    color: var(--dark-color);
+    color:#2B2F77;
 }
 
 .auth-form {
@@ -77,6 +78,20 @@
 .btn-block {
     animation: fadeInUp 0.5s ease-out 0.4s forwards;
     opacity: 0;
+}
+.btn-primary {
+    background-color: #ffe0e9 !important; 
+    color: #2B2F77 !important;           
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+  
+.btn-primary:hover {
+    background-color: #ffb3c6 !important; 
+    color: #2B2F77 !important;            
 }
 
 @keyframes fadeInUp {

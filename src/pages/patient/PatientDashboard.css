@@ -2,6 +2,7 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color:  #2B2F77;
 }
 
 .dashboard-container {
@@ -18,7 +19,7 @@
 
 .dashboard-header h2 {
     font-size: 1.8rem;
-    color: var(--dark-color);
+    color:#dce1ff !important;
 }
 
 .dashboard-content {
@@ -222,7 +223,16 @@
     align-items: center;
     text-align: center;
 }
-
+.quick-links .quick-link-card:nth-child(1) {
+    background-color: #ffe0e9;  
+}
+  .quick-links .quick-link-card:nth-child(2) {
+    background-color: #d8f3dc;   
+}
+  
+  .quick-links .quick-link-card:nth-child(3) {
+    background-color: #C7DAF5;   
+}
 .quick-link-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);

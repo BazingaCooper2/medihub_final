@@ -2,8 +2,12 @@
 .hero {
     padding: 80px 0;
     background: linear-gradient(135deg, #f5f7fa 0%, #e4eff9 100%);
+    background: linear-gradient(135deg, #2B2F77 0%, #6E75A8 100%);
     position: relative;
     overflow: hidden;
+}
+.hero .hero-title{
+    color: #dce1ff;;
 }
 
 .hero::before {
@@ -43,7 +47,15 @@
         transform: translate(0, 0) rotate(0deg);
     }
 }
-
+.hero .hero-buttons .btn-primary {
+    background-color: #ffe0e9 !important;
+    color: #2B2F77 !important;
+    border: none !important;
+}
+  
+.hero .hero-buttons .btn-primary:hover {
+    background-color: #ffd1dc !important;
+}
 .hero .container {
     display: flex;
     align-items: center;
@@ -67,7 +79,7 @@
 
 .hero-subtitle {
     font-size: 1.2rem;
-    color: var(--text-light);
+    color: #dce1ff;
     margin-bottom: 30px;
     animation: fadeInUp 1s ease-out 0.2s forwards;
     opacity: 0;
@@ -97,6 +109,12 @@
     justify-content: center;
     align-items: center;
 }
+.hero-image .hero-img {
+    margin-top: 25px;
+    margin-left: 290px;
+    z-index: 2;
+    height: auto;
+}
 
 .placeholder-image {
     width: 300px;
@@ -107,6 +125,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    position: absolute; 
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 
 .animated-circle {
@@ -127,7 +150,7 @@
 .animated-plus::after {
     content: "";
     position: absolute;
-    background-color: var(--secondary-color);
+    background-color:#d0ebff;
 }
 
 .animated-plus::before {
@@ -193,7 +216,7 @@
     text-align: center;
     font-size: 2.2rem;
     margin-bottom: 50px;
-    color: var(--dark-color);
+    color: #2B2F77;
     position: relative;
 }
 
@@ -242,6 +265,17 @@
     justify-content: center;
     position: relative;
 }
+.service-card:nth-child(1) {
+    background-color: #ffe0e9; 
+}
+
+.service-card:nth-child(2) {
+    background-color: #d8f3dc; 
+}
+
+.service-card:nth-child(3) {
+    background-color: #d0ebff; 
+}
 
 .appointment-icon {
     background-color: rgba(52, 152, 219, 0.1);
@@ -284,7 +318,10 @@
 /* Departments Section */
 .departments {
     padding: 80px 0;
-    background-color: #f5f7fa;
+    background-color: #2B2F77;
+}
+.departments .section-title{
+    color: #dce1ff;;
 }
 
 .department-carousel {
@@ -326,19 +363,19 @@
 }
 
 /* Testimonials Section */
-.testimonials {
+.review {
     padding: 80px 0;
     background-color: white;
 }
 
-.testimonial-cards {
+.review-cards {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
     justify-content: center;
 }
 
-.testimonial-card {
+.review-card {
     flex: 1;
     min-width: 300px;
     max-width: 400px;
@@ -348,7 +385,7 @@
     position: relative;
 }
 
-.testimonial-card::before {
+.review-card::before {
     content: '"';
     position: absolute;
     top: 10px;
@@ -358,14 +395,14 @@
     font-family: Georgia, serif;
 }
 
-.testimonial-card p {
+.review-card p {
     font-style: italic;
     margin-bottom: 20px;
     position: relative;
     z-index: 1;
 }
 
-.testimonial-author {
+.review-author {
     font-weight: 600;
     color: var(--primary-color);
     text-align: right;
@@ -373,7 +410,7 @@
 
 /* Footer */
 .footer {
-    background-color: var(--dark-color);
+    background-color: #2B2F77;
     color: white;
     padding: 60px 0 20px;
 }
@@ -492,4 +529,9 @@
         flex-direction: column;
         gap: 30px;
     }
+}
+.department-carousel {
+    display: flex;
+    overflow-x: scroll; 
+    scroll-behavior: smooth;
 }
