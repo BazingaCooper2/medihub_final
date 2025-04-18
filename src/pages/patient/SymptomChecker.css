@@ -2,6 +2,7 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: #2B2F77;
 }
 
 .checker-container {
@@ -15,12 +16,12 @@
 
 .checker-header h2 {
     font-size: 1.8rem;
-    color: var(--dark-color);
+    color: #dce1ff;
     margin-bottom: 10px;
 }
 
 .checker-header p {
-    color: var(--text-light);
+    color: #dce1ff;
 }
 
 .checker-content {

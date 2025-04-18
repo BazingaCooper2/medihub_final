@@ -216,7 +216,7 @@ const SymptomChecker = () => {
                             <h4>Disclaimer</h4>
                             <p>
                                 This symptom checker is for informational purposes only and is not a qualified medical opinion. Always
-                                consult with a healthcare professional for proper diagnosis and treatment.
+                                consult with a healthcare professional for proper diagnosis and treatment. Visit our clinic for proper medical guidance!
                             </p>
                         </div>
                     </div>

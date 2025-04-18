@@ -1,4 +1,5 @@
 /* Hero Section */
+@import url("./patients-speak.css");
 .hero {
     padding: 80px 0;
     background: linear-gradient(135deg, #f5f7fa 0%, #e4eff9 100%);
@@ -8,6 +9,16 @@
 }
 .hero .hero-title{
     color: #dce1ff;;
+}
+.hero-ournames {
+    margin-top: 30px;        
+    text-align: center;    
+}
+.hero-ournames .hero-name {
+    color: #ffd1dc;       
+    font-size: 1rem;         
+    margin: 5px 0;           
+    font-style: italic;      
 }
 
 .hero::before {
@@ -321,7 +332,7 @@
     background-color: #2B2F77;
 }
 .departments .section-title{
-    color: #dce1ff;;
+    color: #dce1ff;
 }
 
 .department-carousel {
@@ -361,6 +372,125 @@
 .department-card p {
     color: var(--text-light);
 }
+
+.carousel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 40px auto;
+    max-width: 900px;
+  }
+  
+  /* Carousel Box */
+  .carousel-box {
+    background-color: white;
+    border-radius: 15px;
+    padding: 40px;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    animation: fadeIn 0.4s ease;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .carousel-content {
+    text-align: center;
+  }
+  
+  .carousel-content h3 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #2b2f77;
+  }
+  
+  .carousel-content p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  /* Carousel Navigation Buttons */
+  .carousel-btn {
+    background-color: #ffe0e9;
+    color: #2b2f77;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .carousel-btn:hover {
+    background-color: #ad9a9f;
+    color: white;
+    transform: scale(1.1);
+  }
+  
+  .carousel-btn:focus {
+    outline: none;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .carousel-box {
+      padding: 30px;
+      height: 180px;
+    }
+  
+    .carousel-content h3 {
+      font-size: 1.5rem;
+    }
+  
+    .carousel-content p {
+      font-size: 1rem;
+    }
+  
+    .carousel-btn {
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .carousel-container {
+      gap: 10px;
+    }
+  
+    .carousel-box {
+      padding: 20px;
+      height: 160px;
+    }
+  
+    .carousel-btn {
+      width: 35px;
+      height: 35px;
+      font-size: 1rem;
+    }
+  }
+  
 
 /* Testimonials Section */
 .review {

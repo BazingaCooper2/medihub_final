@@ -5,7 +5,7 @@ export const doctorData = [
         id: "ped1",
         loginId: "ped1",
         password: "password123",
-        name: "Dr. Sarah Johnson",
+        name: "Dr. Anitha",
         department: "Pediatrics",
         availability: {
             days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -17,7 +17,7 @@ export const doctorData = [
         id: "ped2",
         loginId: "ped2",
         password: "password123",
-        name: "Dr. Michael Chen",
+        name: "Dr. Jayanthi",
         department: "Pediatrics",
         availability: {
             days: ["Monday", "Wednesday", "Friday"],
@@ -29,7 +29,7 @@ export const doctorData = [
         id: "ped3",
         loginId: "ped3",
         password: "password123",
-        name: "Dr. Emily Rodriguez",
+        name: "Dr. Sridhar",
         department: "Pediatrics",
         availability: {
             days: ["Tuesday", "Thursday", "Saturday"],
@@ -43,7 +43,7 @@ export const doctorData = [
         id: "den1",
         loginId: "den1",
         password: "password123",
-        name: "Dr. James Wilson",
+        name: "Dr. James",
         department: "Dentistry",
         availability: {
             days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -55,7 +55,7 @@ export const doctorData = [
         id: "den2",
         loginId: "den2",
         password: "password123",
-        name: "Dr. Sophia Lee",
+        name: "Dr. Praveen",
         department: "Dentistry",
         availability: {
             days: ["Monday", "Wednesday", "Friday", "Saturday"],
@@ -67,7 +67,7 @@ export const doctorData = [
         id: "den3",
         loginId: "den3",
         password: "password123",
-        name: "Dr. Robert Garcia",
+        name: "Dr. Gayathri",
         department: "Dentistry",
         availability: {
             days: ["Tuesday", "Thursday", "Saturday"],
@@ -81,7 +81,7 @@ export const doctorData = [
         id: "der1",
         loginId: "der1",
         password: "password123",
-        name: "Dr. Amanda Taylor",
+        name: "Dr. Sreenivas",
         department: "Dermatology",
         availability: {
             days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -93,7 +93,7 @@ export const doctorData = [
         id: "der2",
         loginId: "der2",
         password: "password123",
-        name: "Dr. David Kim",
+        name: "Dr. Anandh",
         department: "Dermatology",
         availability: {
             days: ["Monday", "Wednesday", "Friday"],
@@ -105,7 +105,7 @@ export const doctorData = [
         id: "der3",
         loginId: "der3",
         password: "password123",
-        name: "Dr. Jessica Martinez",
+        name: "Dr. Jessica",
         department: "Dermatology",
         availability: {
             days: ["Tuesday", "Thursday", "Saturday"],
@@ -119,7 +119,7 @@ export const doctorData = [
         id: "ort1",
         loginId: "ort1",
         password: "password123",
-        name: "Dr. Thomas Brown",
+        name: "Dr. Thomas",
         department: "Orthopedics",
         availability: {
             days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -131,7 +131,7 @@ export const doctorData = [
         id: "ort2",
         loginId: "ort2",
         password: "password123",
-        name: "Dr. Lisa Wang",
+        name: "Dr. Venkat",
         department: "Orthopedics",
         availability: {
             days: ["Monday", "Wednesday", "Friday"],
@@ -143,7 +143,7 @@ export const doctorData = [
         id: "ort3",
         loginId: "ort3",
         password: "password123",
-        name: "Dr. Kevin Patel",
+        name: "Dr. Kevin",
         department: "Orthopedics",
         availability: {
             days: ["Tuesday", "Thursday", "Saturday"],
@@ -157,7 +157,7 @@ export const doctorData = [
         id: "car1",
         loginId: "car1",
         password: "password123",
-        name: "Dr. Jennifer Adams",
+        name: "Dr. Krishnan",
         department: "Cardiology",
         availability: {
             days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -169,7 +169,7 @@ export const doctorData = [
         id: "car2",
         loginId: "car2",
         password: "password123",
-        name: "Dr. William Smith",
+        name: "Dr. Aakansha",
         department: "Cardiology",
         availability: {
             days: ["Monday", "Wednesday", "Friday"],
@@ -181,7 +181,7 @@ export const doctorData = [
         id: "car3",
         loginId: "car3",
         password: "password123",
-        name: "Dr. Maria Gonzalez",
+        name: "Dr. Abhijith",
         department: "Cardiology",
         availability: {
             days: ["Tuesday", "Thursday", "Saturday"],

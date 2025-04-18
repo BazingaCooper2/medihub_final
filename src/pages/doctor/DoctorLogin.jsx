@@ -84,7 +84,7 @@ const DoctorLogin = () => {
 
                     <div className="doctor-login-help">
                         <h3>Demo Login IDs</h3>
-                        <p>For demonstration purposes, you can use the following login credentials:</p>
+                        <p>Sample Login Credentials:</p>
                         <ul>
                             <li>
                                 <strong>Pediatrics:</strong> ped1, ped2, ped3
