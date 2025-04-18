@@ -1,6 +1,5 @@
-// Hardcoded doctor data as per requirements
+
 export const doctorData = [
-    // Pediatrics Department
     {
         id: "ped1",
         loginId: "ped1",
@@ -76,7 +75,7 @@ export const doctorData = [
         image: "/images/doctors/doctor6.jpg",
     },
 
-    // Dermatology Department
+ 
     {
         id: "der1",
         loginId: "der1",
@@ -114,7 +113,6 @@ export const doctorData = [
         image: "/images/doctors/doctor9.jpg",
     },
 
-    // Orthopedics Department
     {
         id: "ort1",
         loginId: "ort1",
@@ -152,7 +150,6 @@ export const doctorData = [
         image: "/images/doctors/doctor12.jpg",
     },
 
-    // Cardiology Department
     {
         id: "car1",
         loginId: "car1",
@@ -191,20 +188,20 @@ export const doctorData = [
     },
 ]
 
-// Get all departments
+
 export const departments = [...new Set(doctorData.map((doctor) => doctor.department))]
 
-// Get doctors by department
+
 export const getDoctorsByDepartment = (department) => {
     return doctorData.filter((doctor) => doctor.department === department)
 }
 
-// Get doctor by ID
+
 export const getDoctorById = (id) => {
     return doctorData.find((doctor) => doctor.id === id)
 }
 
-// Search doctors by name or department
+
 export const searchDoctors = (query) => {
     const lowercaseQuery = query.toLowerCase()
     return doctorData.filter(

@@ -15,11 +15,9 @@ const PatientDashboard = () => {
     const [pastAppointments, setPastAppointments] = useState([])
 
     useEffect(() => {
-        // Get current and past appointments
         setCurrentAppointments(getCurrentAppointments())
         setPastAppointments(getPastAppointments())
 
-        // Update appointments every minute to check for past appointments
         const interval = setInterval(() => {
             setCurrentAppointments(getCurrentAppointments())
             setPastAppointments(getPastAppointments())

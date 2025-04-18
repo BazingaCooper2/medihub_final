@@ -1,4 +1,4 @@
-// Symptom checker data
+
 export const symptoms = [
     {
         id: "headache",
@@ -146,17 +146,17 @@ export const symptoms = [
     },
 ]
 
-// Get all symptom names
+
 export const getSymptomNames = () => {
     return symptoms.map((symptom) => symptom.name)
 }
 
-// Get symptom by ID
+
 export const getSymptomById = (id) => {
     return symptoms.find((symptom) => symptom.id === id)
 }
 
-// Get related symptoms
+
 export const getRelatedSymptoms = (symptomId) => {
     const symptom = getSymptomById(symptomId)
     if (!symptom) return []
@@ -168,23 +168,23 @@ export const getRelatedSymptoms = (symptomId) => {
         .filter(Boolean)
 }
 
-// Get possible conditions for a set of symptoms
+
 export const getPossibleConditions = (symptomIds) => {
     if (!symptomIds.length) return []
 
-    // Get all conditions from the selected symptoms
+
     const allConditions = symptomIds.flatMap((id) => {
         const symptom = getSymptomById(id)
         return symptom ? symptom.possibleConditions : []
     })
 
-    // Count occurrences of each condition
+
     const conditionCounts = allConditions.reduce((acc, condition) => {
         acc[condition.name] = (acc[condition.name] || 0) + 1
         return acc
     }, {})
 
-    // Remove duplicates and sort by relevance (number of matching symptoms)
+
     const uniqueConditions = [...new Map(allConditions.map((item) => [item.name, item])).values()]
 
     return uniqueConditions.sort((a, b) => conditionCounts[b.name] - conditionCounts[a.name])

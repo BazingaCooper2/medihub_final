@@ -22,10 +22,10 @@ const BookAppointment = () => {
     const [error, setError] = useState("")
     const [success, setSuccess] = useState("")
 
-    // Get all departments
+  
     const departments = [...new Set(doctors.map((doctor) => doctor.department))]
 
-    // Filter doctors based on department and search query
+    
     useEffect(() => {
         let filtered = doctors
 
@@ -43,20 +43,20 @@ const BookAppointment = () => {
         setFilteredDoctors(filtered)
     }, [doctors, selectedDepartment, searchQuery])
 
-    // Reset selected doctor when department changes
+
     useEffect(() => {
         setSelectedDoctor("")
         setSelectedDate("")
         setSelectedTime("")
     }, [selectedDepartment])
 
-    // Reset date and time when doctor changes
+    
     useEffect(() => {
         setSelectedDate("")
         setSelectedTime("")
     }, [selectedDoctor])
 
-    // Generate available times based on doctor's availability and selected date
+
     useEffect(() => {
         if (!selectedDoctor || !selectedDate) {
             setAvailableTimes([])
@@ -69,17 +69,15 @@ const BookAppointment = () => {
             return
         }
 
-        // Get day of week for selected date
         const dateObj = new Date(selectedDate)
         const dayOfWeek = dateObj.toLocaleDateString("en-US", { weekday: "long" })
 
-        // Check if doctor works on this day
+    
         if (!doctor.availability.days.includes(dayOfWeek)) {
             setAvailableTimes([])
             return
         }
 
-        // Generate time slots
         const { start, end } = doctor.availability.hours
         const startHour = Number.parseInt(start.split(":")[0])
         const endHour = Number.parseInt(end.split(":")[0])
@@ -93,14 +91,12 @@ const BookAppointment = () => {
         setAvailableTimes(times)
     }, [doctors, selectedDoctor, selectedDate])
 
-    // Get minimum date (tomorrow)
     const getMinDate = () => {
         const tomorrow = new Date()
         tomorrow.setDate(tomorrow.getDate() + 1)
         return tomorrow.toISOString().split("T")[0]
     }
 
-    // Handle form submission
     const handleSubmit = (e) => {
         e.preventDefault()
 
@@ -128,14 +124,12 @@ const BookAppointment = () => {
 
             setSuccess("Appointment booked successfully!")
 
-            // Reset form
             setSelectedDepartment("")
             setSelectedDoctor("")
             setSelectedDate("")
             setSelectedTime("")
             setSearchQuery("")
 
-            // Redirect to dashboard after 2 seconds
             setTimeout(() => {
                 navigate("/patient/dashboard")
             }, 2000)

@@ -45,9 +45,7 @@ const LandingPage = () => {
     return () => clearInterval(interval)
   }, [])
 
-  // Patient testimonial data
   const patientTestimonials = [
-    // Top row (scrolls right to left)
     {
       row: 1,
       items: [
@@ -83,7 +81,6 @@ const LandingPage = () => {
         },
       ],
     },
-    // Bottom row (scrolls left to right)
     {
       row: 2,
       items: [

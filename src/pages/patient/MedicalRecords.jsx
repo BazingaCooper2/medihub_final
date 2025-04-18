@@ -9,10 +9,8 @@ const MedicalRecords = () => {
     const { getPatientMedicalRecords } = useContext(DataContext)
     const [filter, setFilter] = useState("")
 
-    // Get all medical records
     const medicalRecords = getPatientMedicalRecords()
 
-    // Filter records based on search query
     const filteredRecords = medicalRecords.filter((record) => {
         const searchText = filter.toLowerCase()
         return (
@@ -22,7 +20,6 @@ const MedicalRecords = () => {
         )
     })
 
-    // Group records by date
     const groupedRecords = filteredRecords.reduce((groups, record) => {
         const date = record.date
         if (!groups[date]) {
@@ -32,12 +29,10 @@ const MedicalRecords = () => {
         return groups
     }, {})
 
-    // Sort dates in descending order
     const sortedDates = Object.keys(groupedRecords).sort((a, b) => {
         return new Date(b) - new Date(a)
     })
 
-    // Function to render file icon based on type
     const getFileIcon = (type) => {
         if (type.includes("pdf")) {
             return "pdf-icon"

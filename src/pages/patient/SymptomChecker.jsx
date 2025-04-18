@@ -17,15 +17,12 @@ const SymptomChecker = () => {
     ])
     const [showResults, setShowResults] = useState(false)
 
-    // Update related symptoms when selected symptoms change
     useEffect(() => {
         if (selectedSymptoms.length > 0) {
-            // Get related symptoms for all selected symptoms
             const related = selectedSymptoms.flatMap((symptomId) => {
                 return getRelatedSymptoms(symptomId)
             })
 
-            // Remove duplicates and already selected symptoms
             const uniqueRelated = related.filter(
                 (symptom) =>
                     symptom && !selectedSymptoms.includes(symptom.id) && !relatedSymptoms.some((s) => s.id === symptom.id),
@@ -33,7 +30,6 @@ const SymptomChecker = () => {
 
             setRelatedSymptoms(uniqueRelated)
 
-            // Get possible conditions
             const possibleConditions = getPossibleConditions(selectedSymptoms)
             setConditions(possibleConditions)
         } else {
@@ -42,16 +38,13 @@ const SymptomChecker = () => {
         }
     }, [selectedSymptoms])
 
-    // Handle symptom selection
     const handleSymptomSelect = (symptomId) => {
         const symptom = getSymptomById(symptomId)
 
         if (!symptom) return
 
-        // Add to selected symptoms
         setSelectedSymptoms([...selectedSymptoms, symptomId])
 
-        // Add to chat history
         setChatHistory([
             ...chatHistory,
             { type: "user", message: `I have ${symptom.name.toLowerCase()}.` },
@@ -62,23 +55,18 @@ const SymptomChecker = () => {
         ])
     }
 
-    // Handle related symptom selection
     const handleRelatedSymptomSelect = (symptomId) => {
         const symptom = getSymptomById(symptomId)
 
         if (!symptom) return
 
-        // Add to selected symptoms
         setSelectedSymptoms([...selectedSymptoms, symptomId])
 
-        // Remove from related symptoms
         setRelatedSymptoms(relatedSymptoms.filter((s) => s.id !== symptomId))
 
-        // Add to chat history
         setChatHistory([...chatHistory, { type: "user", message: `Yes, I also have ${symptom.name.toLowerCase()}.` }])
     }
 
-    // Handle showing results
     const handleShowResults = () => {
         setChatHistory([
             ...chatHistory,

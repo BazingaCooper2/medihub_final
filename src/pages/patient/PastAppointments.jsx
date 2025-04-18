@@ -9,10 +9,8 @@ const PastAppointments = () => {
     const { getPastAppointments } = useContext(DataContext)
     const [filter, setFilter] = useState("")
 
-    // Get past appointments
     const pastAppointments = getPastAppointments()
 
-    // Filter appointments based on search query
     const filteredAppointments = pastAppointments.filter((appointment) => {
         const searchText = filter.toLowerCase()
         return (

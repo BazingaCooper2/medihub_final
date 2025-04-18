@@ -1,11 +1,9 @@
-/* Patients Speak Section */
 .patients-speak {
     padding: 80px 0;
     background-color: #f8f9fa;
     overflow: hidden;
   }
   
-  /* Video Carousel Container */
   .video-carousel {
     position: relative;
     width: 100%;
@@ -19,12 +17,10 @@
     padding: 10px 0;
   }
   
-  /* Right to Left Animation */
   .video-carousel-rtl .video-carousel-inner {
     animation: scrollRTL 10s linear infinite;
   }
   
-  /* Left to Right Animation */
   .video-carousel-ltr .video-carousel-inner {
     animation: scrollLTR 10s linear infinite;
   }
@@ -94,7 +90,7 @@
   .play-button span {
     color: #2b2f77;
     font-size: 24px;
-    margin-left: 4px; /* Slight adjustment for the play icon */
+    margin-left: 4px; 
   }
   
   .video-thumbnail:hover .play-button {
@@ -102,7 +98,6 @@
     transform: translate(-50%, -50%) scale(1.1);
   }
   
-  /* Video with Text */
   .video-item-with-text {
     display: flex;
     width: 580px;

@@ -3,11 +3,11 @@
 import { createContext, useState, useEffect } from "react"
 import { doctorData } from "../data/doctors"
 
-// Create the Auth Context
+
 export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
-    // Initialize state from localStorage if available
+  
     const [currentUser, setCurrentUser] = useState(() => {
         const savedUser = localStorage.getItem("currentUser")
         return savedUser ? JSON.parse(savedUser) : null
@@ -17,7 +17,6 @@ export const AuthProvider = ({ children }) => {
         return localStorage.getItem("userType") || null
     })
 
-    // Update localStorage when auth state changes
     useEffect(() => {
         if (currentUser) {
             localStorage.setItem("currentUser", JSON.stringify(currentUser))
@@ -32,9 +31,9 @@ export const AuthProvider = ({ children }) => {
         }
     }, [currentUser, userType])
 
-    // Patient registration function
+  
     const registerPatient = (email, password, name) => {
-        // Check if patient already exists
+       
         const patients = JSON.parse(localStorage.getItem("patients") || "[]")
         const existingPatient = patients.find((patient) => patient.email === email)
 
@@ -42,28 +41,28 @@ export const AuthProvider = ({ children }) => {
             throw new Error("Email already in use")
         }
 
-        // Create new patient
+       
         const newPatient = {
             id: Date.now().toString(),
             email,
-            password, // In a real app, this would be hashed
+            password, 
             name,
             appointments: [],
             medicalRecords: [],
         }
 
-        // Save to localStorage
+       
         patients.push(newPatient)
         localStorage.setItem("patients", JSON.stringify(patients))
 
-        // Set as current user
+
         setCurrentUser(newPatient)
         setUserType("patient")
 
         return newPatient
     }
 
-    // Patient login function
+
     const loginPatient = (email, password) => {
         const patients = JSON.parse(localStorage.getItem("patients") || "[]")
         const patient = patients.find((p) => p.email === email && p.password === password)
@@ -78,9 +77,8 @@ export const AuthProvider = ({ children }) => {
         return patient
     }
 
-    // Doctor login function
+ 
     const loginDoctor = (loginId, password) => {
-        // Find doctor in our hardcoded data
         const doctor = doctorData.find((d) => d.loginId === loginId && d.password === password)
 
         if (!doctor) {
@@ -93,26 +91,26 @@ export const AuthProvider = ({ children }) => {
         return doctor
     }
 
-    // Logout function
+  
     const logout = () => {
         setCurrentUser(null)
         setUserType(null)
     }
 
-    // Update user data (for appointments, etc.)
+
     const updateUserData = (userData) => {
         if (userType === "patient") {
-            // Update in localStorage
+            
             const patients = JSON.parse(localStorage.getItem("patients") || "[]")
             const updatedPatients = patients.map((p) => (p.id === userData.id ? userData : p))
             localStorage.setItem("patients", JSON.stringify(updatedPatients))
         }
 
-        // Update current user state
+       
         setCurrentUser(userData)
     }
 
-    // Context value
+   
     const value = {
         currentUser,
         userType,

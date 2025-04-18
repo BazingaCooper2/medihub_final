@@ -109,7 +109,6 @@
     margin-right: 5px;
 }
 
-/* Responsive styles */
 @media (max-width: 768px) {
     .selection-cards {
         flex-direction: column;

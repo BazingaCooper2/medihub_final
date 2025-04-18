@@ -115,7 +115,7 @@
     }
 }
 
-/* Responsive styles */
+
 @media (max-width: 576px) {
     .auth-card {
         padding: 30px 20px;

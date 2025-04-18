@@ -21,90 +21,60 @@ const DoctorDashboard = () => {
     const [uploadFile, setUploadFile] = useState(null)
     const [uploadFileName, setUploadFileName] = useState("")
 
-    // Get appointments on load and every minute
     useEffect(() => {
         const fetchAppointments = () => {
             const allAppointments = getUserAppointments()
-
-            // Filter current appointments
             const current = allAppointments.filter((appointment) => {
                 const appointmentDate = new Date(`${appointment.date}T${appointment.time}`)
                 return appointmentDate >= new Date()
             })
-
             setAppointments(current)
             setPastAppointments(getPastAppointments())
         }
 
         fetchAppointments()
-
         const interval = setInterval(fetchAppointments, 60000)
-
         return () => clearInterval(interval)
     }, [getUserAppointments, getPastAppointments])
 
-    // Filter appointments based on active tab
     const filteredAppointments = appointments.filter((appointment) => {
-        if (activeTab === "pending") {
-            return appointment.status === "pending"
-        } else if (activeTab === "confirmed") {
-            return appointment.status === "confirmed"
-        } else if (activeTab === "rescheduled") {
-            return appointment.status === "rescheduled"
-        }
+        if (activeTab === "pending") return appointment.status === "pending"
+        if (activeTab === "confirmed") return appointment.status === "confirmed"
+        if (activeTab === "rescheduled") return appointment.status === "rescheduled"
         return true
     })
 
-    // Handle appointment confirmation
     const handleConfirm = (appointmentId) => {
         updateAppointmentStatus(appointmentId, "confirmed")
-
-        // Update local state
         setAppointments(
-            appointments.map((appointment) => {
-                if (appointment.id === appointmentId) {
-                    return { ...appointment, status: "confirmed" }
-                }
-                return appointment
-            }),
+            appointments.map((appointment) =>
+                appointment.id === appointmentId ? { ...appointment, status: "confirmed" } : appointment
+            )
         )
     }
 
-    // Handle appointment reschedule
     const handleReschedule = (appointment) => {
         setSelectedAppointment(appointment)
         setRescheduleMessage("")
         setShowRescheduleModal(true)
     }
 
-    // Submit reschedule
     const submitReschedule = () => {
-        if (!rescheduleMessage.trim()) {
-            return
-        }
+        if (!rescheduleMessage.trim()) return
 
         updateAppointmentStatus(selectedAppointment.id, "rescheduled", rescheduleMessage)
-
-        // Update local state
         setAppointments(
-            appointments.map((appointment) => {
-                if (appointment.id === selectedAppointment.id) {
-                    return {
-                        ...appointment,
-                        status: "rescheduled",
-                        message: rescheduleMessage,
-                    }
-                }
-                return appointment
-            }),
+            appointments.map((appointment) =>
+                appointment.id === selectedAppointment.id
+                    ? { ...appointment, status: "rescheduled", message: rescheduleMessage }
+                    : appointment
+            )
         )
-
         setShowRescheduleModal(false)
         setSelectedAppointment(null)
         setRescheduleMessage("")
     }
 
-    // Handle medical record upload
     const handleUpload = (appointment) => {
         setSelectedAppointment(appointment)
         setUploadFile(null)
@@ -112,7 +82,6 @@ const DoctorDashboard = () => {
         setShowUploadModal(true)
     }
 
-    // Handle file selection
     const handleFileChange = (e) => {
         const file = e.target.files[0]
         if (file) {
@@ -121,45 +90,37 @@ const DoctorDashboard = () => {
         }
     }
 
-    // Submit file upload
     const submitUpload = () => {
-        if (!uploadFile) {
-            return
-        }
+        if (!uploadFile) return
 
-        // In a real app, we would upload the file to a server
-        // For this demo, we'll simulate it with a FileReader
         const reader = new FileReader()
-
         reader.onload = (e) => {
             const fileData = {
                 name: uploadFileName,
                 type: uploadFile.type,
-                data: e.target.result, // Base64 encoded data
+                data: e.target.result,
             }
 
             uploadMedicalRecord(selectedAppointment.id, fileData)
 
-            // Update local state
             setAppointments(
-                appointments.map((appointment) => {
-                    if (appointment.id === selectedAppointment.id) {
-                        return {
-                            ...appointment,
-                            medicalRecords: [
-                                ...appointment.medicalRecords,
-                                {
-                                    id: Date.now().toString(),
-                                    name: fileData.name,
-                                    type: fileData.type,
-                                    data: fileData.data,
-                                    uploadDate: new Date().toISOString(),
-                                },
-                            ],
-                        }
-                    }
-                    return appointment
-                }),
+                appointments.map((appointment) =>
+                    appointment.id === selectedAppointment.id
+                        ? {
+                              ...appointment,
+                              medicalRecords: [
+                                  ...appointment.medicalRecords,
+                                  {
+                                      id: Date.now().toString(),
+                                      name: fileData.name,
+                                      type: fileData.type,
+                                      data: fileData.data,
+                                      uploadDate: new Date().toISOString(),
+                                  },
+                              ],
+                          }
+                        : appointment
+                )
             )
 
             setShowUploadModal(false)
@@ -174,7 +135,6 @@ const DoctorDashboard = () => {
     return (
         <div className="doctor-dashboard">
             <Header />
-
             <div className="container dashboard-container">
                 <div className="dashboard-header">
                     <h2>Welcome, Dr. {currentUser.name}</h2>
@@ -182,33 +142,16 @@ const DoctorDashboard = () => {
                         <span className="department-badge">{currentUser.department}</span>
                     </div>
                 </div>
-
                 <div className="dashboard-content">
                     <div className="dashboard-section">
                         <div className="section-header">
                             <h3>Appointment Requests</h3>
                             <div className="tabs">
-                                <button
-                                    className={`tab ${activeTab === "pending" ? "active" : ""}`}
-                                    onClick={() => setActiveTab("pending")}
-                                >
-                                    Pending
-                                </button>
-                                <button
-                                    className={`tab ${activeTab === "confirmed" ? "active" : ""}`}
-                                    onClick={() => setActiveTab("confirmed")}
-                                >
-                                    Confirmed
-                                </button>
-                                <button
-                                    className={`tab ${activeTab === "rescheduled" ? "active" : ""}`}
-                                    onClick={() => setActiveTab("rescheduled")}
-                                >
-                                    Rescheduled
-                                </button>
+                                <button className={`tab ${activeTab === "pending" ? "active" : ""}`} onClick={() => setActiveTab("pending")}>Pending</button>
+                                <button className={`tab ${activeTab === "confirmed" ? "active" : ""}`} onClick={() => setActiveTab("confirmed")}>Confirmed</button>
+                                <button className={`tab ${activeTab === "rescheduled" ? "active" : ""}`} onClick={() => setActiveTab("rescheduled")}>Rescheduled</button>
                             </div>
                         </div>
-
                         {filteredAppointments.length === 0 ? (
                             <div className="empty-state">
                                 <p>No {activeTab} appointments found.</p>
@@ -221,7 +164,6 @@ const DoctorDashboard = () => {
                                             <h4>{appointment.patientName}</h4>
                                             <span className="appointment-email">{appointment.patientEmail}</span>
                                         </div>
-
                                         <div className="appointment-details">
                                             <div className="appointment-info">
                                                 <span className="info-label">Date:</span>
@@ -238,42 +180,28 @@ const DoctorDashboard = () => {
                                                 </span>
                                             </div>
                                         </div>
-
                                         {appointment.status === "rescheduled" && (
                                             <div className="appointment-message">
-                                                <p>
-                                                    <strong>Message:</strong> {appointment.message}
-                                                </p>
+                                                <p><strong>Message:</strong> {appointment.message}</p>
                                             </div>
                                         )}
-
                                         <div className="appointment-actions">
                                             {appointment.status === "pending" && (
                                                 <>
-                                                    <button className="btn btn-primary btn-sm" onClick={() => handleConfirm(appointment.id)}>
-                                                        Confirm
-                                                    </button>
-                                                    <button className="btn btn-danger btn-sm" onClick={() => handleReschedule(appointment)}>
-                                                        Reschedule
-                                                    </button>
+                                                    <button className="btn btn-primary btn-sm" onClick={() => handleConfirm(appointment.id)}>Confirm</button>
+                                                    <button className="btn btn-danger btn-sm" onClick={() => handleReschedule(appointment)}>Reschedule</button>
                                                 </>
                                             )}
-
                                             {appointment.status === "confirmed" && (
-                                                <button className="btn btn-secondary btn-sm" onClick={() => handleUpload(appointment)}>
-                                                    Upload Medical Record
-                                                </button>
+                                                <button className="btn btn-secondary btn-sm" onClick={() => handleUpload(appointment)}>Upload Medical Record</button>
                                             )}
                                         </div>
-
                                         {appointment.medicalRecords.length > 0 && (
                                             <div className="medical-records">
                                                 <h5>Medical Records</h5>
                                                 <ul className="records-list">
                                                     {appointment.medicalRecords.map((record) => (
-                                                        <li key={record.id} className="record-item">
-                                                            {record.name}
-                                                        </li>
+                                                        <li key={record.id} className="record-item">{record.name}</li>
                                                     ))}
                                                 </ul>
                                             </div>
@@ -283,10 +211,8 @@ const DoctorDashboard = () => {
                             </div>
                         )}
                     </div>
-
                     <div className="dashboard-section">
                         <h3>Past Appointments</h3>
-
                         {pastAppointments.length === 0 ? (
                             <div className="empty-state">
                                 <p>No past appointments found.</p>
@@ -318,9 +244,7 @@ const DoctorDashboard = () => {
                                                     {appointment.medicalRecords.length > 0 ? (
                                                         <div className="records-count">{appointment.medicalRecords.length} record(s)</div>
                                                     ) : (
-                                                        <button className="btn btn-outline btn-sm" onClick={() => handleUpload(appointment)}>
-                                                            Upload
-                                                        </button>
+                                                        <button className="btn btn-outline btn-sm" onClick={() => handleUpload(appointment)}>Upload</button>
                                                     )}
                                                 </td>
                                             </tr>
@@ -332,28 +256,17 @@ const DoctorDashboard = () => {
                     </div>
                 </div>
             </div>
-
-            {/* Reschedule Modal */}
             {showRescheduleModal && (
                 <div className="modal-overlay">
                     <div className="modal-container">
                         <div className="modal-header">
                             <h3>Reschedule Appointment</h3>
-                            <button className="modal-close" onClick={() => setShowRescheduleModal(false)}>
-                                &times;
-                            </button>
+                            <button className="modal-close" onClick={() => setShowRescheduleModal(false)}>&times;</button>
                         </div>
                         <div className="modal-body">
-                            <p>
-                                <strong>Patient:</strong> {selectedAppointment.patientName}
-                            </p>
-                            <p>
-                                <strong>Date:</strong> {selectedAppointment.date}
-                            </p>
-                            <p>
-                                <strong>Time:</strong> {selectedAppointment.time}
-                            </p>
-
+                            <p><strong>Patient:</strong> {selectedAppointment.patientName}</p>
+                            <p><strong>Date:</strong> {selectedAppointment.date}</p>
+                            <p><strong>Time:</strong> {selectedAppointment.time}</p>
                             <div className="form-group">
                                 <label htmlFor="rescheduleMessage">Message for Patient:</label>
                                 <textarea
@@ -368,47 +281,27 @@ const DoctorDashboard = () => {
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-outline" onClick={() => setShowRescheduleModal(false)}>
-                                Cancel
-                            </button>
-                            <button className="btn btn-primary" onClick={submitReschedule} disabled={!rescheduleMessage.trim()}>
-                                Send Reschedule Request
-                            </button>
+                            <button className="btn btn-outline" onClick={() => setShowRescheduleModal(false)}>Cancel</button>
+                            <button className="btn btn-primary" onClick={submitReschedule} disabled={!rescheduleMessage.trim()}>Send Reschedule Request</button>
                         </div>
                     </div>
                 </div>
             )}
-
-            {/* Upload Modal */}
             {showUploadModal && (
                 <div className="modal-overlay">
                     <div className="modal-container">
                         <div className="modal-header">
                             <h3>Upload Medical Record</h3>
-                            <button className="modal-close" onClick={() => setShowUploadModal(false)}>
-                                &times;
-                            </button>
+                            <button className="modal-close" onClick={() => setShowUploadModal(false)}>&times;</button>
                         </div>
                         <div className="modal-body">
-                            <p>
-                                <strong>Patient:</strong> {selectedAppointment.patientName}
-                            </p>
-                            <p>
-                                <strong>Date:</strong> {selectedAppointment.date}
-                            </p>
-                            <p>
-                                <strong>Time:</strong> {selectedAppointment.time}
-                            </p>
-
+                            <p><strong>Patient:</strong> {selectedAppointment.patientName}</p>
+                            <p><strong>Date:</strong> {selectedAppointment.date}</p>
+                            <p><strong>Time:</strong> {selectedAppointment.time}</p>
                             <div className="form-group">
                                 <label htmlFor="uploadFile">Select File:</label>
                                 <div className="file-upload">
-                                    <input
-                                        type="file"
-                                        id="uploadFile"
-                                        onChange={handleFileChange}
-                                        accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
-                                    />
+                                    <input type="file" id="uploadFile" onChange={handleFileChange} accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" />
                                     <div className="file-upload-info">
                                         {uploadFileName ? (
                                             <span className="file-name">{uploadFileName}</span>
@@ -421,12 +314,8 @@ const DoctorDashboard = () => {
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-outline" onClick={() => setShowUploadModal(false)}>
-                                Cancel
-                            </button>
-                            <button className="btn btn-primary" onClick={submitUpload} disabled={!uploadFile}>
-                                Upload Record
-                            </button>
+                            <button className="btn btn-outline" onClick={() => setShowUploadModal(false)}>Cancel</button>
+                            <button className="btn btn-primary" onClick={submitUpload} disabled={!uploadFile}>Upload Record</button>
                         </div>
                     </div>
                 </div>

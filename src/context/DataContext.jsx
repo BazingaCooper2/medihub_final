@@ -4,26 +4,21 @@ import { createContext, useState, useEffect, useContext } from "react"
 import { AuthContext } from "./AuthContext"
 import { doctorData } from "../data/doctors"
 
-// Create the Data Context
 export const DataContext = createContext()
 
 export const DataProvider = ({ children }) => {
     const { currentUser, userType, updateUserData } = useContext(AuthContext)
 
-    // State for appointments
     const [appointments, setAppointments] = useState(() => {
         return JSON.parse(localStorage.getItem("appointments") || "[]")
     })
 
-    // State for doctors
     const [doctors] = useState(doctorData)
 
-    // Update localStorage when appointments change
     useEffect(() => {
         localStorage.setItem("appointments", JSON.stringify(appointments))
     }, [appointments])
 
-    // Book a new appointment
     const bookAppointment = (appointmentData) => {
         const newAppointment = {
             id: Date.now().toString(),
@@ -35,16 +30,14 @@ export const DataProvider = ({ children }) => {
             department: appointmentData.department,
             date: appointmentData.date,
             time: appointmentData.time,
-            status: "pending", // pending, confirmed, rescheduled, completed
+            status: "pending",
             message: "",
             medicalRecords: [],
         }
 
-        // Add to appointments
         const updatedAppointments = [...appointments, newAppointment]
         setAppointments(updatedAppointments)
 
-        // Update patient's appointments if current user is a patient
         if (userType === "patient") {
             const updatedUser = {
                 ...currentUser,
@@ -56,7 +49,6 @@ export const DataProvider = ({ children }) => {
         return newAppointment
     }
 
-    // Update appointment status
     const updateAppointmentStatus = (appointmentId, status, message = "") => {
         const updatedAppointments = appointments.map((appointment) => {
             if (appointment.id === appointmentId) {
@@ -72,7 +64,6 @@ export const DataProvider = ({ children }) => {
         setAppointments(updatedAppointments)
     }
 
-    // Upload medical record to an appointment
     const uploadMedicalRecord = (appointmentId, fileData) => {
         const updatedAppointments = appointments.map((appointment) => {
             if (appointment.id === appointmentId) {
@@ -84,7 +75,7 @@ export const DataProvider = ({ children }) => {
                             id: Date.now().toString(),
                             name: fileData.name,
                             type: fileData.type,
-                            data: fileData.data, // Base64 encoded data
+                            data: fileData.data,
                             uploadDate: new Date().toISOString(),
                         },
                     ],
@@ -96,7 +87,6 @@ export const DataProvider = ({ children }) => {
         setAppointments(updatedAppointments)
     }
 
-    // Get appointments for current user
     const getUserAppointments = () => {
         if (!currentUser) return []
 
@@ -109,7 +99,6 @@ export const DataProvider = ({ children }) => {
         return []
     }
 
-    // Get current appointments (not past)
     const getCurrentAppointments = () => {
         const now = new Date()
         const userAppointments = getUserAppointments()
@@ -120,7 +109,6 @@ export const DataProvider = ({ children }) => {
         })
     }
 
-    // Get past appointments
     const getPastAppointments = () => {
         const now = new Date()
         const userAppointments = getUserAppointments()
@@ -131,13 +119,11 @@ export const DataProvider = ({ children }) => {
         })
     }
 
-    // Get medical records for a patient
     const getPatientMedicalRecords = () => {
         if (userType !== "patient" || !currentUser) return []
 
         const patientAppointments = appointments.filter((appointment) => appointment.patientId === currentUser.id)
 
-        // Flatten all medical records from all appointments
         return patientAppointments.reduce((records, appointment) => {
             return [
                 ...records,
@@ -152,7 +138,6 @@ export const DataProvider = ({ children }) => {
         }, [])
     }
 
-    // Context value
     const value = {
         doctors,
         appointments,
